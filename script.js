@@ -1,4 +1,4 @@
-// Example of simple form validation
+// form validation
 function validateForm() {
     var name = document.forms["contactForm"]["name"].value;
     var email = document.forms["contactForm"]["email"].value;
@@ -9,7 +9,7 @@ function validateForm() {
     }
 }
 
-// Example of toggling visibility of an element
+// toggling visibility of an element
 function toggleAboutContent() {
     var aboutContent = document.getElementById("aboutContent");
     aboutContent.style.display = (aboutContent.style.display === "none") ? "block" : "none";

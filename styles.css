@@ -1,9 +1,11 @@
+/* Reset some default styles */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
 }
 
+/* Styling for the header */
 header {
     background-color: #333;
     color: #fff;
@@ -11,6 +13,7 @@ header {
     text-align: center;
 }
 
+/* Styling for the navigation menu */
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -22,10 +25,12 @@ nav ul li {
     margin-right: 15px;
 }
 
+/* Styling for the main content area */
 main {
     padding: 20px;
 }
 
+/* Styling for the footer */
 footer {
     background-color: #333;
     color: #fff;
@@ -35,9 +40,11 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Styling for a profile picture */
 #profile-picture {
-    width: 150px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 50%; /* For a circular shape */
-    margin-right: 20px; /* Adjust the margin for spacing */
+    width: 150px; 
+    height: auto; 
+    border-radius: 50%;
+    margin-right: 20px;
 }
