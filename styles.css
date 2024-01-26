@@ -7,9 +7,11 @@ body {
 
 /* Header styling */
 header {
-    background-color: #333;
+    background-image: url('./360_F_276080724_hltnCyDjcqAyRtLzDYo3T2jXbBtCD7fl.jpg');
+    background-size: cover;
+    background-position: center;
     color: #fff;
-    padding: 1rem;
+    padding: 1px;
     text-align: center;
 }
 
