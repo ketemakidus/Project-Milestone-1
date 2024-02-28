@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Prevent the default form submission
             event.preventDefault();
 
-            // Get the name value from the form
+            // To get the name value from the form
             var name = contactForm.elements["name"].value;
 
             // Display the thank you message with the user's name
