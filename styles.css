@@ -11,7 +11,7 @@ header {
     background-size: cover;
     background-position: center;
     color: #fff;
-    padding: 1px;
+    padding: 20px;
     text-align: center;
 }
 
@@ -67,11 +67,14 @@ section#contact {
 /* Container styling */
 .container {
     text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /* Form styling */
 form {
     width: 300px;
+    max-width: 400px;
 }
 
 /* Label styling for forms */
