@@ -1,17 +1,23 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
 const http = require ('http');
 const path = require ('path');
+const nodemailer = require('nodemailer');
 
 const app = express();
+const server = http.Server(app);
 const port = 3000;
+const bodyParser = require('body-parser');
+
+app.set("port", port);
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(express.static(path.join(__dirname,"page/contact.html")));
 
 // Middleware to parse incoming request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static files (HTML, CSS, etc.) from the "public" directory
-app.use(express.static('public'));
+app.use(express.static('Project Milestone 1'));
 
 // Route to handle form submissions
 app.post('/contact.html', (req, res) => {
