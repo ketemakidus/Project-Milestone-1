@@ -11,13 +11,20 @@ const bodyParser = require('body-parser');
 app.set("port", port);
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(express.static(path.join(__dirname,"page/contact.html")));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Routing
+
+app.post('/contact.html', (req, res) => {
+    // Form submission handling code
+});
+
 
 // Middleware to parse incoming request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static files (HTML, CSS, etc.) from the "public" directory
-app.use(express.static('Project Milestone 1'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Route to handle form submissions
 app.post('/contact.html', (req, res) => {
