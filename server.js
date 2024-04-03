@@ -2,10 +2,10 @@ const express = require('express');
 const http = require ('http');
 const path = require ('path');
 const nodemailer = require('nodemailer');
-
 const app = express();
-const server = http.Server(app);
 const port = 3000;
+
+const server = http.Server(app);
 const bodyParser = require('body-parser');
 
 app.set("port", port);
@@ -15,8 +15,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routing
 
-app.post('/contact.html', (req, res) => {
-    // Form submission handling code
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + './index.html'); // send HTML file on GET request
 });
 
 
@@ -59,5 +59,5 @@ app.post('/contact.html', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server running on http://localhost:${port}`);
 });
