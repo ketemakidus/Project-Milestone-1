@@ -1,28 +1,36 @@
+// Import required modules
 const express = require('express');
-const app = express();
-const port = 3000;
-const http = require ('http');
-const path = require ('path');
+const http = require('http');
+const path = require('path');
 const nodemailer = require('nodemailer');
-const server = http.Server(app);
 const bodyParser = require('body-parser');
 
-app.set("port", port);
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-app.use(express.static(path.join(__dirname, '')));
+// Create Express app
+const app = express();
+const port = 3000;
 
-// for parsing application/x-www-form-urlencoded
+// Create HTTP server
+const server = http.Server(app);
+
+// Set up middleware
+app.set('port', port);
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '')));
 
 // send HTML file on GET request
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html'); 
+    res.sendFile(__dirname + 'index.html'); 
 });
 
 // Route to handle form submissions
 app.post('/contact.html', (req, res) => {
     const { name, email, message } = req.body;
+
+     // Check if required fields are present
+     if (!name || !email || !message) {
+        return res.status(400).send('Name, email, and message are required.');
+    }
 
     // Process form data send email)
     const transporter = nodemailer.createTransport({
@@ -33,6 +41,7 @@ app.post('/contact.html', (req, res) => {
         }
     });
 
+    // Compose email message
     const mailOptions = {
         from: 'ketemakidus009@gmail.com',
         to: 'ketemakidus009@gmail.com', 
@@ -40,10 +49,11 @@ app.post('/contact.html', (req, res) => {
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
     };
 
+// Send email
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Error occurred:', error);
-            res.status(500).send('Error sending message');
+           return res.status(500).send('Error sending message');
         } else {
             console.log('Message sent:', info.response);
             res.status(200).send('Message sent successfully');
