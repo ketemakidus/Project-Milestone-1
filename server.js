@@ -20,31 +20,29 @@ app.use(express.static(path.join(__dirname, '')));
 
 // send HTML file on GET request
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + 'index.html'); 
+    res.sendFile(__dirname + '/contact.html'); 
 });
 
 // Route to handle form submissions
-app.post('/contact.html', (req, res) => {
-    const { name, email, message } = req.body;
+app.post('/contact.html', function ( req, response) {
+    var name = req.body.name;
+    var email = req.body.email;
+    var message = req.body.message;
 
-     // Check if required fields are present
-     if (!name || !email || !message) {
-        return res.status(400).send('Name, email, and message are required.');
-    }
 
     // Process form data send email)
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: 'ketemakidus009@gmail.com', 
-            pass: 'ruza tmof jzmk sbzt' 
+            pass: 'omgsjrbjamwwwbks'
         }
     });
 
     // Compose email message
     const mailOptions = {
-        from: 'ketemakidus009@gmail.com',
-        to: 'ketemakidus009@gmail.com', 
+        from: email,
+        email: 'ketemakidus009@gmail.com', 
         subject: 'New Message from Portfolio Contact Form',
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
     };
