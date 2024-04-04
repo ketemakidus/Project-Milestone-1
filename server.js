@@ -1,10 +1,9 @@
 const express = require('express');
+const app = express();
+const port = 3000;
 const http = require ('http');
 const path = require ('path');
 const nodemailer = require('nodemailer');
-const app = express();
-const port = 3000;
-
 const server = http.Server(app);
 const bodyParser = require('body-parser');
 
@@ -13,18 +12,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, '')));
 
-// Routing
+// for parsing application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
+// send HTML file on GET request
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + './index.html'); // send HTML file on GET request
+    res.sendFile(__dirname + '/index.html'); 
 });
-
-
-// Middleware to parse incoming request bodies
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Serve static files (HTML, CSS, etc.) from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Route to handle form submissions
 app.post('/contact.html', (req, res) => {
