@@ -42,7 +42,7 @@ app.post('/contact.html', function ( req, response) {
     // Compose email message
     const mailOptions = {
         from: email,
-        email: 'ketemakidus009@gmail.com', 
+        to: 'ketemakidus009@gmail.com', 
         subject: 'New Message from Portfolio Contact Form',
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
     };
