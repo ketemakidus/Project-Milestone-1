@@ -5,11 +5,11 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 
-// Create Express app
+// Express app
 const app = express();
 const port = 3000;
 
-// Create HTTP server
+// HTTP server
 const server = http.Server(app);
 
 // Set up middleware
