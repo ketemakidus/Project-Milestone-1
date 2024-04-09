@@ -3,7 +3,6 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const nodemailer = require('nodemailer');
-const bodyParser = require('body-parser');
 
 // Express app
 const app = express();
@@ -24,13 +23,10 @@ app.get('/', (req, res) => {
 });
 
 // Route to handle form submissions
-app.post('/contact.html', function ( req, response) {
-    var name = req.body.name;
-    var email = req.body.email;
-    var message = req.body.message;
+app.post('/submitForm', function (req, response) {
+    const { name, email, message } = req.body;
 
-
-    // Process form data send email)
+    // Process form data and send email
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -47,19 +43,19 @@ app.post('/contact.html', function ( req, response) {
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
     };
 
-// Send email
+    // Send email
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Error occurred:', error);
-           return res.status(500).send('Error sending message');
+            return response.status(500).send('Error sending message');
         } else {
             console.log('Message sent:', info.response);
-            res.status(200).send('Message sent successfully');
+            response.status(200).send('Message sent successfully');
         }
     });
 });
 
 // Start the server
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
