@@ -9,7 +9,7 @@ const app = express();
 const port = 3000;
 
 // HTTP server
-const server = http.Server(app);
+const server = http.createServer(app);
 
 // Set up middleware
 app.set('port', port);
@@ -23,38 +23,39 @@ app.get('/', (req, res) => {
 });
 
 // Route to handle form submissions
-app.post('/submitForm', function (req, response) {
-    const { name, email, message } = req.body;
+app.post('/submitForm', async function (req, res) {
+    try {
+        const { name, email, message } = req.body;
 
-    // Process form data and send email
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'ketemakidus009@gmail.com', 
-            pass: 'omgsjrbjamwwwbks'
-        }
-    });
+        // Process form data and send email
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'ketemakidus009@gmail.com', 
+                pass: 'lmua qtnq jyuz iyvm'
+            }
+        });
 
-    // Compose email message
-    const mailOptions = {
-        from: email,
-        to: 'ketemakidus009@gmail.com', 
-        subject: 'New Message from Portfolio Contact Form',
-        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
-    };
+        // Compose email message
+        const mailOptions = {
+            from: email,
+            to: 'ketemakidus009@gmail.com', 
+            subject: 'New Message from Portfolio Contact Form',
+            text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+        };
 
-    // Send email
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error('Error occurred:', error);
-            return response.status(500).send('Error sending message');
-        } else {
-            console.log('Message sent:', info.response);
-            response.status(200).send('Message sent successfully');
-        }
-    });
+        // Send email
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Message sent:', info.response);
+        
+        // Send success response
+        res.status(200).send('Message sent successfully');
+    } catch (error) {
+        console.error('Error occurred:', error);
+        // Send error response
+        res.status(500).send('Error sending message');
+    }
 });
-
 // Start the server
 server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
