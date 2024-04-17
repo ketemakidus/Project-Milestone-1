@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
             // Display the thank you message with the user's name
             thankYouMessage.innerHTML = "Thank you, " + name + ", for filling the form. I will get back to you as soon as possible.";
             thankYouMessage.style.display = "block";
-
             // Reset the form
             contactForm.reset();
         });

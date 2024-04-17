@@ -35,7 +35,6 @@ app.post('/submitForm', async function (req, res) {
                 pass: 'lmua qtnq jyuz iyvm'
             }
         });
-
         // Compose email message
         const mailOptions = {
             from: email,
@@ -43,7 +42,6 @@ app.post('/submitForm', async function (req, res) {
             subject: 'New Message from Portfolio Contact Form',
             text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
         };
-
         // Send email
         const info = await transporter.sendMail(mailOptions);
         console.log('Message sent:', info.response);
